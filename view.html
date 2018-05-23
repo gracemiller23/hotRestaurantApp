@@ -52,5 +52,29 @@
     </div>
   </div>
 
+  <script>
+   $(document).ready(function(){
+    $.get("/api/view", function(data){
+
+      if(data){
+        for(let i = 0; i< 5; i++){
+          var entry = data[i];
+          var tableInfo = "<div class ='tableNum'> <span class= 'number'>" + i + "</span> "+ entry.id +"</div>"
+          $(".current-res").append(tableInfo);
+        }
+        for (let j=5; i<data.length; j++){
+          var entry = data[i];
+          var tableInfo = "<div class ='tableNum'> <span class= 'number'>" + i + "</span> "+ entry.id +"</div>"
+          $(".waiting-res").append(tableInfo);
+        }
+      }else{
+        $(".current-res").append("<h2>You're in luck! There are no current reservations.</h2>")
+        $(".waiting-res").append("<h2>There's no one on the waiting list'.</h2>")
+      }
+    });
+
+  });
+  </script>
+
 </body>
 </html>
