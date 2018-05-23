@@ -33,8 +33,7 @@
           </div>
           <div class="panel-body">
             
-            <div class="well" id="CUSTOMIDGOESHEREWITHNUM-#"><h2><span class="label label-primary">| </span> UNIQUE ID GOES HERE</h2></div>
-
+            
           </div>
         </div>
 
@@ -44,7 +43,7 @@
             </div>
             <div class="panel-body">
               
-              <div class="well" id="CUSTOMIDGOESHEREWITHNUM-#"><h2><span class="label label-primary">| </span> UNIQUE ID GOES HERE</h2></div>
+              
             </div>
           </div>
 
@@ -58,13 +57,13 @@
 
       if(data){
         for(let i = 0; i< 5; i++){
-          var entry = data[i];
-          var tableInfo = "<div class ='tableNum'> <span class= 'number'>" + i + "</span> "+ entry.id +"</div>"
+          var tableNum = i + 1;
+          var tableInfo = "<div class ='well'><h2> <span class= 'label label-primary number'>" + tableNum + "</span> "+ data[i].id +"</h2></div>"
           $(".current-res").append(tableInfo);
         }
         for (let j=5; i<data.length; j++){
-          var entry = data[i];
-          var tableInfo = "<div class ='tableNum'> <span class= 'number'>" + i + "</span> "+ entry.id +"</div>"
+          var tableNum = i + 1;
+          var tableInfo = "<div class ='well'> <h2><span class= 'label label-primary number'>" + tableNum + "</span> "+ data[i].id +"</h2></div>"
           $(".waiting-res").append(tableInfo);
         }
       }else{
