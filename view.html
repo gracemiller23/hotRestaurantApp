@@ -1,79 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Hot Restaurant</title>
-  <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Hot Restaurant</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
 </head>
+
 <body>
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
-      <h2 class="text-center">Current Reservations &amp; Waiting List</h2>
-      <hr>
-      <div class="text-center">
-      <a href="/reserve"><button class="btn btn-danger btn-lg"><span class="fa fa-list"></span> Make Reservations</button></a>
-      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-home"></span></button></a></div>
-    </div>
-    <div class="row">
-
-      <div class="col-lg-12">
-
-        <div class="panel panel-default current-res">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Current Reservations</strong></h3>
-          </div>
-          <div class="panel-body">
-            
-            
-          </div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">
+                <span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+            <h2 class="text-center">Current Reservations &amp; Waiting List</h2>
+            <hr>
+            <div class="text-center">
+                <a href="/reserve">
+                    <button class="btn btn-danger btn-lg">
+                        <span class="fa fa-list"></span> Make Reservations</button>
+                </a>
+                <a href="/">
+                    <button class="btn btn-danger btn-lg">
+                        <span class="fa fa-home"></span>
+                    </button>
+                </a>
+            </div>
         </div>
+        <div class="row">
 
-        <div class="panel panel-default waiting-res">
-            <div class="panel-heading">
-              <h3 class="panel-title"><strong>Waiting List</strong></h3>
-            </div>
-            <div class="panel-body">
-              
-              
-            </div>
-          </div>
+            <div class="col-lg-12">
 
-      </div>
+                <div class="panel panel-default current-res">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong>Current Reservations</strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default waiting-res">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong>Waiting List</strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-   $(document).ready(function(){
-    $.get("/api/view", function(data){
+    <script>
+        $(document).ready(function () {
+            $.get("/api/view", function (data) {
+                console.log(data);
+                if (data) {
 
-      if(data){
-        for(let i = 0; i< 5; i++){
-          var tableNum = i + 1;
-          var tableInfo = "<div class ='well'><h2> <span class= 'label label-primary number'>" + tableNum + "</span> "+ data[i].id +"</h2></div>"
-          $(".current-res").append(tableInfo);
-        }
-        for (let j=5; i<data.length; j++){
-          var tableNum = i + 1;
-          var tableInfo = "<div class ='well'> <h2><span class= 'label label-primary number'>" + tableNum + "</span> "+ data[i].id +"</h2></div>"
-          $(".waiting-res").append(tableInfo);
-        }
-      }else{
-        $(".current-res").append("<h2>You're in luck! There are no current reservations.</h2>")
-        $(".waiting-res").append("<h2>There's no one on the waiting list'.</h2>")
-      }
-    });
+                    if (data.length >= 5) {
+                        for (let i = 0; i < 5; i++) {
+                            var tableNum = i + 1;
+                            var tableInfo = "<div class ='well'><h2> <span class= 'label label-primary number'>" + tableNum + "</span> " + data[i].id + "</h2></div>"
+                            $(".current-res").append(tableInfo);
+                        }
+                        for (let j = 5; j < data.length; j++) {
+                            var tableNum = j + 1;
+                            var tableInfo = "<div class ='well'> <h2><span class= 'label label-primary number'>" + tableNum + "</span> " + data[i].id + "</h2></div>"
+                            $(".waiting-res").append(tableInfo);
+                        }
+                    } else {
 
-  });
-  </script>
+                        for (let i = 0; i < data.length; i++) {
+                            var tableNum = i + 1;
+                            var tableInfo = "<div class ='well'><h2> <span class= 'label label-primary number'>" + tableNum + "</span> " + data[i].id + "</h2></div>"
+                            $(".current-res").append(tableInfo);
+                        }
+                        $(".waiting-res").append("<h2>There's no one on the waiting list'.</h2>")
+                    }
+
+                } else {
+                    $(".current-res").append("<h2>You're in luck! There are no current reservations.</h2>")
+                    $(".waiting-res").append("<h2>There's no one on the waiting list'.</h2>")
+                }
+            });
+
+        });
+    </script>
 
 </body>
+
 </html>
