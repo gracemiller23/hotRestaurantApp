@@ -1,0 +1,26 @@
+{
+  "name": "hotrestaurantapp",
+  "version": "1.0.0",
+  "description": "An express app for a restaurant with 5 tables",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gracemiller23/hotRestaurantApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gracemiller23/hotRestaurantApp/issues"
+  },
+  "homepage": "https://github.com/gracemiller23/hotRestaurantApp#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {}
+}
