@@ -66,5 +66,22 @@
     </div>
   </div>
 
+  <script>
+     $("#add-btn").on("click", function(event){
+      event.preventDefault();
+      var newTable= {
+        name: $("#res-name").val().trim(),
+        phone: $("#res-phone").val().trim(),
+        email: $("#res-email").val().trim(),
+        id: $("#res-id").val().trim()
+      };
+
+      $.post("/api/view", newTable).then(function(data){
+        console.log("add.html", data);
+        alert("Table added ...");
+      })
+    });
+    </script>
+
 </body>
 </html>
